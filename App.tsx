@@ -2,8 +2,17 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Navgation from '@navigation/Navigation';
 import '@unistyles/unistyles';
+import {Provider} from 'react-redux';
+import {persistor, store} from '@states/store';
+import {PersistGate} from 'redux-persist/integration/react';
 const App = () => {
-  return <Navgation />;
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Navgation />
+      </PersistGate>
+    </Provider>
+  );
 };
 
 export default App;
