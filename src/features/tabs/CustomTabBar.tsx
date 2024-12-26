@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, Linking, TouchableOpacity, View} from 'react-native';
 import React, {FC} from 'react';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import {useAppSelector} from '@states/reduxHook';
@@ -67,7 +67,7 @@ const CustomTabBar: FC<BottomTabBarProps> = props => {
                 canPreventDefault: true,
               });
 
-              if (isFocused && !event.defaultPrevented) {
+              if (!isFocused && !event.defaultPrevented) {
                 console.log(
                   'Navigating to:',
                   route.name,
@@ -126,6 +126,15 @@ const CustomTabBar: FC<BottomTabBarProps> = props => {
             },
           ]}
         />
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={styles.blinkitLogoContainer}
+          onPress={() => Linking.openURL('')}>
+          <Image
+            source={require('@assets/icons/blinkit.png')}
+            style={styles.blinkitLogo}
+          />
+        </TouchableOpacity>
       </Animated.View>
     </>
   );
